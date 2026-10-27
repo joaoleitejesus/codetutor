@@ -1,0 +1,22 @@
+[
+  {
+    "id": "COND-001",
+    "topic": "condicionais",
+    "level": 1,
+    "type": "predict_output",
+    "statement": "O que o programa exibe na tela? Responda só com o texto exibido.",
+    "code": [
+      "numero = 4",
+      "if numero > 5:",
+      "    print('Maior')",
+      "else:",
+      "    print('Menor ou igual')"
+    ],
+    "accepted_answers": ["Menor ou igual"],
+    "hints": [
+      "Veja se 4 é maior que 5.",
+      "Quando a condição do if é falsa, o programa executa o bloco else."
+    ],
+    "explanation": "A condição 4 > 5 é falsa. Por isso o bloco else é executado e o programa exibe: Menor ou igual."
+  }
+]
