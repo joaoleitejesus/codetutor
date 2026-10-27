@@ -1,0 +1,19 @@
+[
+  {
+    "id": "LOOP-001",
+    "topic": "repeticao",
+    "level": 1,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para exibir os números de 0 a 2. Responda só com o que vai no lugar de ___.",
+    "code": [
+      "for i in range(___):",
+      "    print(i)"
+    ],
+    "accepted_answers": ["3"],
+    "hints": [
+      "O limite final do range não é incluído na contagem.",
+      "Para gerar 0, 1 e 2, o limite final precisa ser o número seguinte ao 2."
+    ],
+    "explanation": "range(3) gera 0, 1 e 2, porque o limite superior (3) não entra na contagem."
+  }
+]

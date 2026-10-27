@@ -1,0 +1,25 @@
+[
+  {
+    "id": "VAR-001",
+    "topic": "variaveis",
+    "level": 1,
+    "type": "multiple_choice",
+    "statement": "Qual é o valor da variável idade depois da execução do código?",
+    "code": [
+      "idade = 17",
+      "idade = idade + 1"
+    ],
+    "options": [
+      {"id": "a", "text": "17"},
+      {"id": "b", "text": "18"},
+      {"id": "c", "text": "171"},
+      {"id": "d", "text": "Dá erro"}
+    ],
+    "correct_option": "b",
+    "hints": [
+      "Observe a segunda linha: ela usa o valor que a variável já tinha.",
+      "O valor atual de idade é somado a 1 e guardado de novo em idade."
+    ],
+    "explanation": "A primeira linha guarda 17 em idade. Na segunda, o valor atual (17) é somado a 1 e o resultado, 18, é guardado de novo em idade."
+  }
+]

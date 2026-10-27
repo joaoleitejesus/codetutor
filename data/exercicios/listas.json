@@ -1,0 +1,15 @@
+[
+  {
+    "id": "LIST-001",
+    "topic": "listas",
+    "level": 1,
+    "type": "short_answer",
+    "statement": "Qual método de uma lista Python adiciona um elemento no final dela? Responda só com o nome do método.",
+    "accepted_answers": ["append", "append()", "método append"],
+    "hints": [
+      "O nome do método começa com a letra a.",
+      "A chamada tem a forma lista.nome(elemento)."
+    ],
+    "explanation": "O método append() adiciona um elemento ao final de uma lista. Exemplo: frutas.append('uva')."
+  }
+]
