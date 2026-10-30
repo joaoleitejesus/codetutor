@@ -3,20 +3,527 @@
     "id": "COND-001",
     "topic": "condicionais",
     "level": 1,
-    "type": "predict_output",
-    "statement": "O que o programa exibe na tela? Responda só com o texto exibido.",
+    "type": "multiple_choice",
+    "statement": "Observe o código abaixo. Qual palavra será exibida na tela? Responda só com a letra da alternativa.",
     "code": [
-      "numero = 4",
-      "if numero > 5:",
-      "    print('Maior')",
+      "idade = 17",
+      "if idade >= 18:",
+      "    print('maior')",
       "else:",
-      "    print('Menor ou igual')"
+      "    print('menor')"
     ],
-    "accepted_answers": ["Menor ou igual"],
+    "options": [
+      {
+        "id": "A",
+        "text": "MAIOR"
+      },
+      {
+        "id": "B",
+        "text": "MENOR"
+      },
+      {
+        "id": "C",
+        "text": "maior"
+      },
+      {
+        "id": "D",
+        "text": "menor"
+      },
+      {
+        "id": "E",
+        "text": "Ocorre um erro"
+      }
+    ],
+    "correct_option": "D",
     "hints": [
-      "Veja se 4 é maior que 5.",
-      "Quando a condição do if é falsa, o programa executa o bloco else."
+      "Compare o valor de idade com 18 usando o operador >=.",
+      "Como 17 não é maior nem igual a 18, a condição é falsa e o bloco else é executado."
     ],
-    "explanation": "A condição 4 > 5 é falsa. Por isso o bloco else é executado e o programa exibe: Menor ou igual."
+    "explanation": "A condição idade >= 18 é falsa para idade = 17. Por isso, o programa executa o else e imprime 'menor'."
+  },
+  {
+    "id": "COND-002",
+    "topic": "condicionais",
+    "level": 1,
+    "type": "multiple_choice",
+    "statement": "Observe o código abaixo. O que acontece ao executar esse código? Responda só com a letra da alternativa.",
+    "code": [
+      "x = 5",
+      "if x = 5:",
+      "    print('cinco')"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "O programa imprime cinco."
+      },
+      {
+        "id": "B",
+        "text": "O programa não imprime nada e termina normalmente."
+      },
+      {
+        "id": "C",
+        "text": "Ocorre um erro de sintaxe porque = não é o operador de comparação."
+      },
+      {
+        "id": "D",
+        "text": "O programa imprime False."
+      }
+    ],
+    "correct_option": "C",
+    "hints": [
+      "Repare no símbolo usado entre x e 5 na condição.",
+      "Em Python, = atribui um valor; para comparar igualdade, use ==."
+    ],
+    "explanation": "O código gera um erro de sintaxe porque a condição usa =, que é o operador de atribuição. Para verificar se x é igual a 5, seria necessário usar ==."
+  },
+  {
+    "id": "COND-003",
+    "topic": "condicionais",
+    "level": 1,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para que o programa verifique se o semáforo está vermelho. Responda só com a palavra que substitui ___.",
+    "code": [
+      "semaforo = 'vermelho'",
+      "___ semaforo == 'vermelho':",
+      "    print('esperar abrir')"
+    ],
+    "accepted_answers": [
+      "if"
+    ],
+    "hints": [
+      "A primeira palavra de uma estrutura condicional inicia o teste de uma condição.",
+      "Em Python, a palavra-chave que inicia uma condição é if."
+    ],
+    "explanation": "A palavra if inicia uma estrutura condicional. Como semaforo é igual a 'vermelho', o programa imprime 'esperar abrir'."
+  },
+  {
+    "id": "COND-004",
+    "topic": "condicionais",
+    "level": 1,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual palavra será impressa? Responda só com a palavra exibida.",
+    "code": [
+      "idade = 18",
+      "if idade > 18:",
+      "    print('adulto')",
+      "else:",
+      "    print('menor')"
+    ],
+    "accepted_answers": [
+      "menor"
+    ],
+    "hints": [
+      "Compare o valor de idade com 18 usando o operador >.",
+      "O operador > exige que idade seja estritamente maior que 18; como idade vale 18, o else é executado."
+    ],
+    "explanation": "A condição idade > 18 é falsa quando idade vale exatamente 18. Por isso, o bloco else imprime 'menor'."
+  },
+  {
+    "id": "COND-005",
+    "topic": "condicionais",
+    "level": 2,
+    "type": "multiple_choice",
+    "statement": "Analise o código e escolha a saída exibida. Responda só com a letra da alternativa.",
+    "code": [
+      "nota = 4",
+      "if nota >= 7:",
+      "    print('aprovado')",
+      "print('fim')"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "aprovado e depois fim"
+      },
+      {
+        "id": "B",
+        "text": "somente fim"
+      },
+      {
+        "id": "C",
+        "text": "nada é impresso"
+      },
+      {
+        "id": "D",
+        "text": "ocorre um erro de sintaxe"
+      }
+    ],
+    "correct_option": "B",
+    "hints": [
+      "Observe quais linhas estão indentadas dentro do if e qual está fora dele.",
+      "Como nota vale 4, o if é falso; o print('fim') está fora do bloco e sempre é executado."
+    ],
+    "explanation": "A condição nota >= 7 é falsa, então 'aprovado' não é impresso. Como print('fim') não está indentado dentro do if, ele é executado independentemente da condição."
+  },
+  {
+    "id": "COND-006",
+    "topic": "condicionais",
+    "level": 2,
+    "type": "multiple_choice",
+    "statement": "Considere o código abaixo. Qual é a saída do programa? Responda só com a letra da alternativa.",
+    "code": [
+      "x = 10",
+      "if x > 5:",
+      "    print('A')",
+      "if x > 8:",
+      "    print('B')"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "Somente A"
+      },
+      {
+        "id": "B",
+        "text": "Somente B"
+      },
+      {
+        "id": "C",
+        "text": "A e depois B"
+      },
+      {
+        "id": "D",
+        "text": "Nada é impresso"
+      }
+    ],
+    "correct_option": "C",
+    "hints": [
+      "Verifique se o segundo if depende do primeiro ou se é uma condição independente.",
+      "Os dois if são independentes. Como 10 > 5 e 10 > 8 são verdadeiros, ambos os prints são executados."
+    ],
+    "explanation": "Como são dois comandos if independentes, cada condição é avaliada separadamente. As duas são verdadeiras para x = 10, então o programa imprime A e depois B."
+  },
+  {
+    "id": "COND-008",
+    "topic": "condicionais",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "Qual valor será impresso pelo código? Responda só com a letra da alternativa.",
+    "code": [
+      "print(not 5 > 3 or 2 > 1)"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "True"
+      },
+      {
+        "id": "B",
+        "text": "False"
+      },
+      {
+        "id": "C",
+        "text": "5"
+      },
+      {
+        "id": "D",
+        "text": "Ocorre um erro"
+      }
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Resolva primeiro as comparações e depois aplique not e or.",
+      "5 > 3 é True, então not True vira False. Já 2 > 1 é True; False or True resulta em True."
+    ],
+    "explanation": "Primeiro, 5 > 3 resulta em True e 2 > 1 também resulta em True. O not transforma o primeiro True em False; depois, False or True resulta em True."
+  },
+  {
+    "id": "COND-009",
+    "topic": "condicionais",
+    "level": 2,
+    "type": "multiple_choice",
+    "statement": "Uma regra considera uma pessoa adolescente quando sua idade está entre 13 e 17 anos, incluindo 13 e 17. Qual condição representa essa regra? Responda só com a letra da alternativa.",
+    "options": [
+      {
+        "id": "A",
+        "text": "idade > 13 and idade < 17"
+      },
+      {
+        "id": "B",
+        "text": "idade >= 13 and idade <= 17"
+      },
+      {
+        "id": "C",
+        "text": "idade >= 13 or idade <= 17"
+      },
+      {
+        "id": "D",
+        "text": "idade == 13 and idade == 17"
+      }
+    ],
+    "correct_option": "B",
+    "hints": [
+      "A condição precisa aceitar os dois limites e exigir que a idade esteja dentro do intervalo.",
+      "Use >= para incluir 13, <= para incluir 17 e and para exigir que ambas as comparações sejam verdadeiras."
+    ],
+    "explanation": "A condição idade >= 13 and idade <= 17 inclui os extremos do intervalo e só é verdadeira quando as duas comparações são verdadeiras."
+  },
+  {
+    "id": "COND-010",
+    "topic": "condicionais",
+    "level": 2,
+    "type": "multiple_choice",
+    "statement": "Considere o código abaixo. Qual será a saída? Responda só com a letra da alternativa.",
+    "code": [
+      "numero = 10",
+      "if numero >= 5:",
+      "    print('A')",
+      "elif numero >= 10:",
+      "    print('B')",
+      "else:",
+      "    print('C')"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "A"
+      },
+      {
+        "id": "B",
+        "text": "B"
+      },
+      {
+        "id": "C",
+        "text": "C"
+      },
+      {
+        "id": "D",
+        "text": "A e B"
+      }
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Em uma sequência if/elif/else, as condições são verificadas na ordem em que aparecem.",
+      "Como numero >= 5 já é verdadeiro, o primeiro bloco é executado e o elif não é avaliado."
+    ],
+    "explanation": "A condição numero >= 5 é verdadeira para numero = 10. Por isso, o programa imprime A e não verifica o elif."
+  },
+  {
+    "id": "COND-011",
+    "topic": "condicionais",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "Observe a sequência de condições abaixo. Para nota = 8, o programa imprime 'recuperacao', embora a nota seja maior que 7. Qual é o problema principal? Responda só com a letra da alternativa.",
+    "code": [
+      "nota = 8",
+      "if nota >= 5:",
+      "    print('recuperacao')",
+      "elif nota >= 7:",
+      "    print('aprovado')",
+      "else:",
+      "    print('reprovado')"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "O operador >= não pode ser usado em if."
+      },
+      {
+        "id": "B",
+        "text": "A condição nota >= 5 vem antes e já é verdadeira para nota = 8."
+      },
+      {
+        "id": "C",
+        "text": "O elif sempre é executado, mesmo que o if seja verdadeiro."
+      },
+      {
+        "id": "D",
+        "text": "A variável nota precisa ser uma string."
+      }
+    ],
+    "correct_option": "B",
+    "hints": [
+      "Leia as condições na ordem em que aparecem e veja qual delas é satisfeita primeiro.",
+      "Como 8 >= 5 é verdadeiro, o primeiro bloco é executado e o elif não é avaliado. Reordene as condições para testar primeiro a nota mais alta."
+    ],
+    "explanation": "Em uma sequência if/elif/else, depois que uma condição é verdadeira, as condições seguintes não são avaliadas. Como nota >= 5 aparece primeiro, a nota 8 entra nesse bloco. Para classificar corretamente, a condição mais específica ou mais alta deve vir antes."
+  },
+  {
+    "id": "COND-012",
+    "topic": "condicionais",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "Observe o código. Qual frase será exibida? Responda só com a letra da alternativa.",
+    "code": [
+      "idade = 20",
+      "tem_carteira = False",
+      "if idade >= 18 and tem_carteira:",
+      "    print('pode dirigir')",
+      "elif idade >= 18:",
+      "    print('é maior de idade')",
+      "else:",
+      "    print('é menor de idade')"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "pode dirigir"
+      },
+      {
+        "id": "B",
+        "text": "é maior de idade"
+      },
+      {
+        "id": "C",
+        "text": "é menor de idade"
+      },
+      {
+        "id": "D",
+        "text": "Ocorre um erro"
+      }
+    ],
+    "correct_option": "B",
+    "hints": [
+      "A primeira condição exige que as duas expressões sejam verdadeiras por causa do and.",
+      "A idade satisfaz idade >= 18, mas tem_carteira é False. Então a primeira condição falha e o elif é verdadeiro."
+    ],
+    "explanation": "A primeira condição é falsa porque tem_carteira vale False. Em seguida, idade >= 18 é verdadeira, então o programa imprime 'é maior de idade'."
+  },
+  {
+    "id": "COND-013",
+    "topic": "condicionais",
+    "level": 3,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual frase será impressa? Responda só com a frase exibida, sem aspas.",
+    "code": [
+      "idade = 20",
+      "tem_ingresso = False",
+      "if idade >= 18:",
+      "    if tem_ingresso:",
+      "        print('pode entrar')",
+      "    else:",
+      "        print('sem ingresso')",
+      "else:",
+      "    print('menor de idade')"
+    ],
+    "accepted_answers": [
+      "sem ingresso"
+    ],
+    "hints": [
+      "Primeiro avalie a condição da idade; depois, se entrar nesse bloco, avalie tem_ingresso.",
+      "A idade 20 satisfaz idade >= 18. Dentro desse bloco, tem_ingresso é False, então o else interno imprime 'sem ingresso'."
+    ],
+    "explanation": "A condição da idade é verdadeira, então o programa entra no primeiro bloco. Como tem_ingresso é False, executa o else interno e imprime 'sem ingresso'."
+  },
+  {
+    "id": "COND-014",
+    "topic": "condicionais",
+    "level": 2,
+    "type": "multiple_choice",
+    "statement": "Uma loja oferece desconto em compras de R$ 100 ou mais. Qual condição verifica corretamente se uma compra tem direito ao desconto? Responda só com a letra da alternativa.",
+    "code": [
+      "valor = 100"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "valor > 100"
+      },
+      {
+        "id": "B",
+        "text": "valor >= 100"
+      },
+      {
+        "id": "C",
+        "text": "valor == 100"
+      },
+      {
+        "id": "D",
+        "text": "valor < 100"
+      }
+    ],
+    "correct_option": "B",
+    "hints": [
+      "A expressão precisa aceitar compras exatamente iguais a R$ 100 e também valores maiores.",
+      "O operador >= significa 'maior ou igual'. Ele inclui o valor 100 e todos os valores acima dele."
+    ],
+    "explanation": "A condição valor >= 100 verifica se o valor é maior ou igual a 100. Assim, compras de exatamente R$ 100 e compras acima desse valor recebem o desconto."
+  },
+  {
+    "id": "COND-015",
+    "topic": "condicionais",
+    "level": 3,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual texto será impresso? Responda só com o texto exibido.",
+    "code": [
+      "n = 15",
+      "if n % 3 == 0:",
+      "    print('Fizz')",
+      "elif n % 5 == 0:",
+      "    print('Buzz')",
+      "else:",
+      "    print(n)"
+    ],
+    "accepted_answers": [
+      "Fizz"
+    ],
+    "hints": [
+      "Calcule primeiro o resto da divisão de 15 por 3 e veja qual condição aparece primeiro.",
+      "15 % 3 é 0, então a primeira condição é verdadeira. O elif não é avaliado depois que o if é executado."
+    ],
+    "explanation": "Como 15 é divisível por 3, n % 3 == 0 é verdadeiro e o programa imprime 'Fizz'. A condição do elif não é avaliada."
+  },
+  {
+    "id": "COND-016",
+    "topic": "condicionais",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "O código abaixo deveria imprimir 'aprovado' quando a nota fosse 7 ou mais, mas a condição foi escrita ao contrário. Qual alteração corrige o problema? Responda só com a letra da alternativa.",
+    "code": [
+      "nota = 8",
+      "if nota < 7:",
+      "    print('aprovado')",
+      "else:",
+      "    print('reprovado')"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "Trocar nota < 7 por nota >= 7."
+      },
+      {
+        "id": "B",
+        "text": "Trocar nota < 7 por nota <= 7."
+      },
+      {
+        "id": "C",
+        "text": "Trocar nota < 7 por nota == 7."
+      },
+      {
+        "id": "D",
+        "text": "Trocar o if por else."
+      }
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Compare a condição atual com a regra: aprovação acontece a partir de 7, incluindo o próprio 7.",
+      "A condição deve ser verdadeira quando nota for 7 ou maior. O operador adequado é >=."
+    ],
+    "explanation": "A condição nota < 7 seleciona notas abaixo de 7, o contrário do desejado. Substituindo por nota >= 7, o programa aprova notas iguais ou superiores a 7."
+  },
+  {
+    "id": "COND-017",
+    "topic": "condicionais",
+    "level": 1,
+    "type": "short_answer",
+    "statement": "Observe o código abaixo. Qual palavra será exibida na tela? Responda somente com a palavra exibida.",
+    "code": [
+      "temperatura = 30",
+      "if temperatura > 30:",
+      "    print('quente')",
+      "elif temperatura < 30:",
+      "    print('frio')",
+      "else:",
+      "    print('agradavel')"
+    ],
+    "accepted_answers": [
+      "agradavel"
+    ],
+    "hints": [
+      "Compare o valor de temperatura com 30 em cada condição.",
+      "A temperatura é exatamente 30. Portanto, as duas primeiras condições são falsas."
+    ],
+    "explanation": "Como temperatura > 30 e temperatura < 30 são falsas, o programa executa o bloco else e imprime 'agradavel'."
   }
 ]
