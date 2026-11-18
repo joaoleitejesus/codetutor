@@ -3,17 +3,394 @@
     "id": "LOOP-001",
     "topic": "repeticao",
     "level": 1,
-    "type": "fill_blank",
-    "statement": "Complete a lacuna para exibir os números de 0 a 2. Responda só com o que vai no lugar de ___.",
+    "type": "multiple_choice",
+    "statement": "Observe o código abaixo. Quais valores são exibidos? Responda só com a letra da alternativa.",
     "code": [
-      "for i in range(___):",
+      "for i in range(2, 5):",
       "    print(i)"
     ],
-    "accepted_answers": ["3"],
-    "hints": [
-      "O limite final do range não é incluído na contagem.",
-      "Para gerar 0, 1 e 2, o limite final precisa ser o número seguinte ao 2."
+    "options": [
+      {
+        "id": "A",
+        "text": "2, 3 e 4"
+      },
+      {
+        "id": "B",
+        "text": "2, 3, 4 e 5"
+      },
+      {
+        "id": "C",
+        "text": "3, 4 e 5"
+      },
+      {
+        "id": "D",
+        "text": "0, 1, 2, 3 e 4"
+      }
     ],
-    "explanation": "range(3) gera 0, 1 e 2, porque o limite superior (3) não entra na contagem."
+    "correct_option": "A",
+    "hints": [
+      "Com dois números, o range tem um valor inicial e um valor final. Pergunte-se: o inicial entra na contagem? E o final?",
+      "O primeiro número é o primeiro valor gerado; o segundo é um limite que não é gerado. Liste os inteiros a partir do primeiro até chegar imediatamente antes do limite."
+    ],
+    "explanation": "range(2, 5) começa em 2 e para antes de 5, gerando 2, 3 e 4. O for repete o print para cada um desses valores. A alternativa B inclui o limite 5 por engano; a C começa um valor depois do início; a D confunde range(2, 5) com range(5)."
+  },
+  {
+    "id": "LOOP-002",
+    "topic": "repeticao",
+    "level": 1,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "contador = 1",
+      "while contador <= 3:",
+      "    contador = contador + 1",
+      "print(contador)"
+    ],
+    "accepted_answers": [
+      "4"
+    ],
+    "hints": [
+      "Acompanhe o valor de contador a cada volta e anote em que momento a condição do while deixa de ser verdadeira.",
+      "O print fica fora do laço, então só é executado depois que o while termina. Pense em qual valor contador já tinha recebido quando a condição ficou falsa."
+    ],
+    "explanation": "Voltas: contador = 1 (1 <= 3, verdadeiro) vira 2; 2 vira 3; 3 vira 4. Com contador = 4, a condição 4 <= 3 é falsa e o laço termina. Só então o print mostra 4. Ideia central: ao sair de um while, a variável de controle guarda o valor que tornou a condição falsa."
+  },
+  {
+    "id": "LOOP-003",
+    "topic": "repeticao",
+    "level": 1,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para que o programa faça uma contagem regressiva, exibindo 3, 2 e 1, e depois termine. Responda só com a expressão que substitui ___ (sem escrever 'n =').",
+    "code": [
+      "n = 3",
+      "while n > 0:",
+      "    print(n)",
+      "    n = ___"
+    ],
+    "accepted_answers": [
+      "n - 1",
+      "n-1",
+      "n -1",
+      "n- 1"
+    ],
+    "hints": [
+      "Para a condição n > 0 deixar de ser verdadeira algum dia, o valor de n precisa mudar a cada volta. Em que direção ele deve andar?",
+      "O novo valor de n deve ser calculado a partir do valor atual de n, andando na direção da contagem regressiva, de um em um."
+    ],
+    "explanation": "A atualização n = n - 1 faz n diminuir a cada volta: 3, 2, 1. Quando n chega a 0, a condição 0 > 0 é falsa e o laço termina. Sem uma atualização que aproxime n do fim, o valor ficaria sempre em 3 e o laço nunca pararia."
+  },
+  {
+    "id": "LOOP-004",
+    "topic": "repeticao",
+    "level": 1,
+    "type": "short_answer",
+    "statement": "Quantas linhas esse programa exibe no total? Responda só com o número.",
+    "code": [
+      "for i in range(3):",
+      "    print('a')",
+      "print('b')"
+    ],
+    "accepted_answers": [
+      "4",
+      "quatro"
+    ],
+    "hints": [
+      "Veja quais linhas estão indentadas, ou seja, quais fazem parte do corpo do for.",
+      "O corpo do for se repete a cada volta; o que está fora dele é executado uma única vez, depois do laço. Conte separadamente cada grupo de linhas."
+    ],
+    "explanation": "O print('a') está dentro do for e roda 3 vezes (3 linhas). O print('b') não está indentado, está fora do laço, e roda uma só vez depois dele (1 linha). Total: 4 linhas. A indentação define o que se repete."
+  },
+  {
+    "id": "LOOP-005",
+    "topic": "repeticao",
+    "level": 1,
+    "type": "multiple_choice",
+    "statement": "Em qual das situações abaixo o while é a escolha mais natural, por não sabermos de antemão quantas repetições serão necessárias? Responda só com a letra da alternativa.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Exibir os números de 1 a 10."
+      },
+      {
+        "id": "B",
+        "text": "Pedir uma senha repetidamente até que o usuário digite a senha correta."
+      },
+      {
+        "id": "C",
+        "text": "Somar as 5 notas de um aluno."
+      },
+      {
+        "id": "D",
+        "text": "Exibir a tabuada do 7, de 7 x 1 até 7 x 10."
+      }
+    ],
+    "correct_option": "B",
+    "hints": [
+      "Em cada alternativa, pergunte-se: eu sei, antes de começar, quantas vezes a repetição vai acontecer?",
+      "O while repete enquanto uma condição for verdadeira. Procure a situação em que o programa só para quando algo acontece, e não depois de um número fixo de voltas."
+    ],
+    "explanation": "Nas alternativas A, C e D a quantidade de repetições é conhecida desde o início (10, 5 e 10), o que combina com for e range. Na B, ninguém sabe quantas tentativas o usuário vai precisar: o programa repete enquanto a senha estiver errada, um uso típico do while."
+  },
+  {
+    "id": "LOOP-006",
+    "topic": "repeticao",
+    "level": 2,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "cont = 0",
+      "for n in range(1, 21):",
+      "    if n % 4 == 0:",
+      "        cont = cont + 1",
+      "print(cont)"
+    ],
+    "accepted_answers": [
+      "5"
+    ],
+    "hints": [
+      "Descubra primeiro quais valores de n tornam n % 4 == 0 verdadeiro. O que significa o resto da divisão ser 0?",
+      "Liste os múltiplos de 4 que aparecem entre o primeiro e o último valor gerado por range(1, 21). Cada um deles soma 1 em cont."
+    ],
+    "explanation": "n % 4 == 0 é verdadeiro quando n é múltiplo de 4. range(1, 21) gera de 1 a 20, então os múltiplos são 4, 8, 12, 16 e 20: cinco valores. Cada um soma 1 em cont, que termina valendo 5. Aqui cont é um contador condicional: só aumenta nas voltas em que o if é verdadeiro."
+  },
+  {
+    "id": "LOOP-007",
+    "topic": "repeticao",
+    "level": 2,
+    "type": "multiple_choice",
+    "statement": "O programa abaixo deveria exibir uma contagem regressiva de 10 até 1. O que realmente acontece ao executá-lo? Responda só com a letra da alternativa.",
+    "code": [
+      "x = 10",
+      "while x > 0:",
+      "    print(x)",
+      "    x = x + 1"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "Exibe 10, 9, 8, ..., 1 e termina."
+      },
+      {
+        "id": "B",
+        "text": "Exibe 10 uma única vez e termina."
+      },
+      {
+        "id": "C",
+        "text": "Exibe 10, 11, 12, ... sem parar, pois a condição nunca se torna falsa."
+      },
+      {
+        "id": "D",
+        "text": "Ocorre um erro de sintaxe, pois x é alterado dentro do while."
+      }
+    ],
+    "correct_option": "C",
+    "hints": [
+      "Observe como o valor de x muda a cada volta e compare essa mudança com o que a condição x > 0 precisa para deixar de ser verdadeira.",
+      "Para o laço parar, em algum momento x > 0 precisa virar falso. Pergunte-se se x = x + 1 aproxima ou afasta x dessa situação."
+    ],
+    "explanation": "O while repete enquanto x > 0 for verdadeiro. Como x começa em 10 e aumenta a cada volta, ele nunca deixa de ser positivo: o laço é infinito. A correção é trocar a atualização por x = x - 1. (Se isso acontecer no seu computador, Ctrl+C interrompe o programa.)"
+  },
+  {
+    "id": "LOOP-008",
+    "topic": "repeticao",
+    "level": 2,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para que o programa some todos os números inteiros de 1 até 10, incluindo o 10. Responda só com o número que substitui ___.",
+    "code": [
+      "soma = 0",
+      "for n in range(1, ___):",
+      "    soma = soma + n",
+      "print(soma)"
+    ],
+    "accepted_answers": [
+      "11"
+    ],
+    "hints": [
+      "Lembre o que acontece com o limite final do range: ele entra ou não na contagem?",
+      "Como o limite final não é gerado, o último valor de n será menor que ele. Pense em qual limite faz o 10 ser o último valor."
+    ],
+    "explanation": "range(1, 11) gera 1, 2, ..., 10, e soma termina valendo 55. Com range(1, 10), o 10 ficaria de fora e o resultado seria 45. O limite final do range nunca é incluído."
+  },
+  {
+    "id": "LOOP-009",
+    "topic": "repeticao",
+    "level": 2,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "n = 1",
+      "while n < 20:",
+      "    n = n * 2",
+      "print(n)"
+    ],
+    "accepted_answers": [
+      "32"
+    ],
+    "hints": [
+      "Anote o valor de n depois de cada volta, em uma tabela com as colunas: n antes, condição, n depois.",
+      "Continue as voltas até aparecer um valor de n que torne n < 20 falso. Lembre que o print só roda depois que o laço termina."
+    ],
+    "explanation": "n vale 1, 2, 4, 8, 16 e, como 16 < 20 ainda é verdadeiro, vira 32. Agora 32 < 20 é falso e o laço termina. O print mostra 32, e não 16: o valor que quebra a condição já foi atribuído a n antes de a condição ser testada de novo."
+  },
+  {
+    "id": "LOOP-010",
+    "topic": "repeticao",
+    "level": 2,
+    "type": "short_answer",
+    "statement": "Qual é o último número exibido por esse programa? Responda só com o número.",
+    "code": [
+      "for i in range(2, 15, 4):",
+      "    print(i)"
+    ],
+    "accepted_answers": [
+      "14"
+    ],
+    "hints": [
+      "O terceiro valor do range é o passo: de quanto em quanto i aumenta a cada volta.",
+      "Comece em 2 e some o passo repetidamente. Pare antes de gerar um valor que atinja ou ultrapasse o limite 15."
+    ],
+    "explanation": "range(2, 15, 4) gera 2, 6, 10 e 14. O próximo seria 18, que ultrapassa o limite 15, então o laço termina. O último valor exibido é 14."
+  },
+  {
+    "id": "LOOP-011",
+    "topic": "repeticao",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "O programa abaixo deveria imprimir a soma 1 + 2 + 3, ou seja, 6, mas imprime 3. Qual é o problema? Responda só com a letra da alternativa.",
+    "code": [
+      "for i in range(1, 4):",
+      "    soma = 0",
+      "    soma = soma + i",
+      "print(soma)"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "O range(1, 4) deveria ser range(1, 5)."
+      },
+      {
+        "id": "B",
+        "text": "soma = 0 está dentro do laço, então o acumulador volta a zero a cada volta."
+      },
+      {
+        "id": "C",
+        "text": "O print deveria estar dentro do for."
+      },
+      {
+        "id": "D",
+        "text": "A expressão soma + i deveria ser escrita como i + soma."
+      }
+    ],
+    "correct_option": "B",
+    "hints": [
+      "Acompanhe o valor de soma do começo ao fim do laço: o que acontece com ele no início de cada volta?",
+      "Um acumulador guarda o resultado parcial entre as voltas. Pergunte-se em que ponto do código ele deve receber seu valor inicial para que isso funcione."
+    ],
+    "explanation": "A cada volta, soma = 0 apaga o que foi acumulado. Volta 1: soma vira 1; volta 2: zera e vira 2; volta 3: zera e vira 3. Por isso o resultado é 3. A correção é inicializar soma = 0 antes do for. Trocar o range (A), mover o print (C) ou inverter a soma (D) não resolve a causa."
+  },
+  {
+    "id": "LOOP-012",
+    "topic": "repeticao",
+    "level": 3,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "total = 0",
+      "n = 1",
+      "while total < 10:",
+      "    total = total + n",
+      "    n = n + 1",
+      "print(n)"
+    ],
+    "accepted_answers": [
+      "5"
+    ],
+    "hints": [
+      "Monte uma tabela com duas colunas, total e n, e preencha uma linha a cada volta do laço.",
+      "Repare na ordem das duas instruções dentro do laço e em qual variável é impressa no final. Repita as voltas até total deixar de ser menor que 10."
+    ],
+    "explanation": "Volta 1: total = 1, n = 2. Volta 2: total = 3, n = 3. Volta 3: total = 6, n = 4. Volta 4: total = 10, n = 5. Agora 10 < 10 é falso e o laço termina. O programa imprime n, que vale 5 (e não 4, nem 10, que é o valor de total)."
+  },
+  {
+    "id": "LOOP-013",
+    "topic": "repeticao",
+    "level": 3,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual valor será impresso? Responda só com True ou False.",
+    "code": [
+      "achou = False",
+      "for n in range(1, 6):",
+      "    if n * n == 16:",
+      "        achou = True",
+      "    else:",
+      "        achou = False",
+      "print(achou)"
+    ],
+    "accepted_answers": [
+      "False"
+    ],
+    "hints": [
+      "Acompanhe o valor de achou volta por volta, inclusive nas voltas em que a condição do if é falsa.",
+      "Observe o que o else faz com achou e qual é o valor de n na última volta. O que acontece com o True atribuído antes?"
+    ],
+    "explanation": "Quando n = 4, 4 * 4 == 16 e achou vira True. Mas na volta seguinte (n = 5), 25 == 16 é falso e o else atribui False novamente. Como o print vem depois da última volta, o resultado é False. Para guardar que algo foi encontrado, o else deve ser removido: a variável só muda para True e nunca volta atrás."
+  },
+  {
+    "id": "LOOP-014",
+    "topic": "repeticao",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "O laço while abaixo imprime vários valores. Qual laço for imprime exatamente os mesmos valores, na mesma ordem? Responda só com a letra da alternativa.",
+    "code": [
+      "i = 10",
+      "while i < 30:",
+      "    print(i)",
+      "    i = i + 5"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "for i in range(10, 30, 5):"
+      },
+      {
+        "id": "B",
+        "text": "for i in range(10, 35, 5):"
+      },
+      {
+        "id": "C",
+        "text": "for i in range(5, 30, 5):"
+      },
+      {
+        "id": "D",
+        "text": "for i in range(10, 30):"
+      }
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Primeiro descubra quais valores o while imprime: de onde parte, de quanto em quanto avança e em que momento para.",
+      "Compare esses valores com o início, o limite e o passo de cada range, lembrando se o limite do range é ou não gerado."
+    ],
+    "explanation": "O while imprime 10, 15, 20 e 25; o 30 não é impresso porque 30 < 30 é falso. range(10, 30, 5) gera exatamente esses valores. A B inclui o 30; a C começa em 5; a D avança de 1 em 1. Início, limite e passo do range correspondem a valor inicial, condição de parada e atualização do while."
+  },
+  {
+    "id": "LOOP-015",
+    "topic": "repeticao",
+    "level": 3,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para que o programa exiba o primeiro número entre 1 e 49 que seja divisível por 5 e por 7 ao mesmo tempo (o programa deve imprimir 35). Responda só com a instrução que substitui ___.",
+    "code": [
+      "for n in range(1, 50):",
+      "    if n % 5 == 0 and n % 7 == 0:",
+      "        ___",
+      "print(n)"
+    ],
+    "accepted_answers": [
+      "break"
+    ],
+    "hints": [
+      "Sem nada na lacuna, o laço continuaria até o fim. Que tipo de instrução interrompe um laço antes da hora?",
+      "Quando o número procurado é encontrado, o laço deve ser encerrado imediatamente. Ao sair, a variável n mantém o último valor que recebeu."
+    ],
+    "explanation": "Com break, o laço termina assim que n = 35 satisfaz a condição, e n continua valendo 35 no print. Sem o break, o laço seguiria até o fim e o programa imprimiria 49, o último valor de n. Esse é o padrão 'procurar e parar'."
   }
 ]
