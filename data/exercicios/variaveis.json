@@ -1,25 +1,316 @@
+
 [
   {
     "id": "VAR-001",
     "topic": "variaveis",
     "level": 1,
     "type": "multiple_choice",
-    "statement": "Qual é o valor da variável idade depois da execução do código?",
+    "statement": "Observe o código abaixo. Quais valores são exibidos, na ordem em que aparecem? Responda só com a letra da alternativa.",
     "code": [
-      "idade = 17",
-      "idade = idade + 1"
+      "preco = 10",
+      "print(preco)",
+      "preco = 15",
+      "print(preco)"
     ],
     "options": [
-      {"id": "a", "text": "17"},
-      {"id": "b", "text": "18"},
-      {"id": "c", "text": "171"},
-      {"id": "d", "text": "Dá erro"}
+      {"id": "A", "text": "10 e depois 15"},
+      {"id": "B", "text": "15 e depois 15"},
+      {"id": "C", "text": "10 e depois 25"},
+      {"id": "D", "text": "Ocorre um erro, pois preco já existia"}
     ],
-    "correct_option": "b",
+    "correct_option": "A",
     "hints": [
-      "Observe a segunda linha: ela usa o valor que a variável já tinha.",
-      "O valor atual de idade é somado a 1 e guardado de novo em idade."
+      "O que acontece com o valor antigo de uma variável quando ela recebe um novo valor?",
+      "Repare na ordem das linhas: o primeiro print é executado antes ou depois da segunda atribuição?"
     ],
-    "explanation": "A primeira linha guarda 17 em idade. Na segunda, o valor atual (17) é somado a 1 e o resultado, 18, é guardado de novo em idade."
+    "explanation": "Uma variável guarda um único valor por vez. O primeiro print é executado quando preco vale 10. Depois, preco = 15 substitui o valor antigo, e o segundo print mostra 15. Reatribuir não gera erro nem soma os valores: o valor anterior simplesmente é descartado."
+  },
+  {
+    "id": "VAR-002",
+    "topic": "variaveis",
+    "level": 1,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "contagem = 5",
+      "contagem = contagem + 2",
+      "contagem = contagem + 2",
+      "print(contagem)"
+    ],
+    "accepted_answers": ["9"],
+    "hints": [
+      "Em Python, o sinal = significa 'guarde o resultado na variável', e não 'é igual a'. Resolva primeiro o lado direito.",
+      "Cada linha usa o valor que contagem tem naquele momento e depois o substitui pelo resultado. A segunda atualização parte do resultado da primeira."
+    ],
+    "explanation": "Primeiro contagem vale 5. Na segunda linha, o lado direito é calculado com o valor atual (5 + 2 = 7) e o resultado vira o novo valor de contagem. Na terceira linha, 7 + 2 = 9. O print mostra 9."
+  },
+  {
+    "id": "VAR-003",
+    "topic": "variaveis",
+    "level": 1,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para que a variável resultado guarde o valor 18. Responda só com a expressão que substitui ___.",
+    "code": [
+      "idade = 17",
+      "resultado = idade + ___",
+      "print(resultado)"
+    ],
+    "accepted_answers": ["1"],
+    "hints": [
+      "Observe o valor que idade guarda e o valor que resultado precisa ter.",
+      "Qual número deve ser somado a 17 para chegar a 18?"
+    ],
+    "explanation": "A variável idade guarda 17. Para que resultado seja 18, basta somar 1. Assim, resultado recebe 17 + 1."
+  },
+  {
+    "id": "VAR-004",
+    "topic": "variaveis",
+    "level": 1,
+    "type": "short_answer",
+    "statement": "Qual valor será impresso? Responda exatamente como o valor aparece na tela.",
+    "code": [
+      "total = 8",
+      "partes = 2",
+      "print(total / partes)"
+    ],
+    "accepted_answers": ["4.0"],
+    "hints": [
+      "Pense no tipo de resultado que o operador / produz em Python, mesmo quando a divisão é exata.",
+      "O resultado de / é sempre do tipo float. Lembre como o Python exibe um número float."
+    ],
+    "explanation": "O operador / sempre devolve um float, mesmo que a divisão seja exata. Por isso 8 / 2 resulta em 4.0, e não em 4."
+  },
+  {
+    "id": "VAR-005",
+    "topic": "variaveis",
+    "level": 1,
+    "type": "multiple_choice",
+    "statement": "Qual das variáveis abaixo guarda um valor do tipo str? Responda só com a letra da alternativa.",
+    "code": [
+      "codigo = '2024'",
+      "ano = 2024",
+      "nota = 7.5",
+      "aprovado = True"
+    ],
+    "options": [
+      {"id": "A", "text": "codigo"},
+      {"id": "B", "text": "ano"},
+      {"id": "C", "text": "nota"},
+      {"id": "D", "text": "aprovado"}
+    ],
+    "correct_option": "A",
+    "hints": [
+      "O tipo de um valor depende da forma como ele é escrito no código. O que distingue um número de um texto?",
+      "Valores entre aspas são strings, mesmo quando parecem números. Examine cada atribuição procurando esse detalhe."
+    ],
+    "explanation": "'2024' está entre aspas, então é uma string, mesmo parecendo um número. 2024 é int, 7.5 é float e True é bool. Não é o conteúdo que define o tipo, e sim a forma como o valor é escrito."
+  },
+  {
+    "id": "VAR-006",
+    "topic": "variaveis",
+    "level": 2,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "x = 4",
+      "print(10 - 2 * (x - 1))"
+    ],
+    "accepted_answers": ["4"],
+    "hints": [
+      "Antes de calcular, lembre a ordem em que o Python avalia uma expressão: parênteses, multiplicação e, por último, soma e subtração.",
+      "Substitua x pelo seu valor e comece pelo parêntese; depois faça a multiplicação e só no fim a subtração."
+    ],
+    "explanation": "Com x = 4: (x - 1) vale 3; 2 * 3 vale 6; 10 - 6 vale 4. Quem calcula da esquerda para a direita, ignorando a precedência, obtém (10 - 2) * 3 = 24, que está errado."
+  },
+  {
+    "id": "VAR-007",
+    "topic": "variaveis",
+    "level": 2,
+    "type": "multiple_choice",
+    "statement": "Observe o código abaixo. Qual será o resultado da expressão exibida? Responda só com a letra da alternativa.",
+    "code": [
+      "a = '4'",
+      "b = '5'",
+      "print(a + b)"
+    ],
+    "options": [
+      {"id": "A", "text": "9"},
+      {"id": "B", "text": "45"},
+      {"id": "C", "text": "4 + 5"},
+      {"id": "D", "text": "Ocorre um erro"}
+    ],
+    "correct_option": "B",
+    "hints": [
+      "Observe como os valores foram escritos: estão entre aspas ou não?",
+      "Quando o operador + é utilizado entre dois textos, ele junta os conteúdos em vez de realizar uma soma matemática."
+    ],
+    "explanation": "As variáveis a e b guardam strings. O operador + entre duas strings realiza concatenação, juntando os textos. Por isso, o resultado é '45', e não 9."
+  },
+  {
+    "id": "VAR-008",
+    "topic": "variaveis",
+    "level": 2,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "a = 3",
+      "b = a",
+      "a = 10",
+      "print(b)"
+    ],
+    "accepted_answers": ["3"],
+    "hints": [
+      "Observe a ordem das linhas: o que cada variável guarda no momento em que b = a é executado?",
+      "A atribuição b = a copia o valor que a tem naquele instante. Depois disso, mudar a também muda b?"
+    ],
+    "explanation": "Em b = a, o valor atual de a (3) é copiado para b. A linha seguinte muda a para 10, mas b continua com o 3 que recebeu. O print mostra 3. Uma atribuição não cria uma ligação permanente entre as variáveis."
+  },
+  {
+    "id": "VAR-009",
+    "topic": "variaveis",
+    "level": 2,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para que a variável aprovado receba True. Responda só com o operador de comparação.",
+    "code": [
+      "nota = 8",
+      "aprovado = nota ___ 7",
+      "print(aprovado)"
+    ],
+    "accepted_answers": [">", ">="],
+    "hints": [
+      "A expressão precisa produzir um valor booleano verdadeiro. Observe os valores que estão sendo comparados.",
+      "Qual operador indica que a nota precisa ser maior que 7 ou igual a 7?"
+    ],
+    "explanation": "A nota vale 8. Tanto 8 > 7 quanto 8 >= 7 produzem True. Por isso, as duas expressões são aceitas."
+  },
+  {
+    "id": "VAR-010",
+    "topic": "variaveis",
+    "level": 2,
+    "type": "short_answer",
+    "statement": "Qual valor será impresso? Responda só com o número.",
+    "code": [
+      "saldo = 100",
+      "saldo = saldo - 30",
+      "saldo = saldo * 2",
+      "saldo = saldo + 10",
+      "print(saldo)"
+    ],
+    "accepted_answers": ["150"],
+    "hints": [
+      "Cada linha usa o valor que saldo tem naquele momento e o substitui pelo novo resultado.",
+      "Faça uma pequena tabela com o valor de saldo depois de cada linha. Cada linha parte do valor deixado pela anterior."
+    ],
+    "explanation": "saldo começa em 100. Depois da segunda linha, vale 70; na terceira, 70 * 2 = 140; na quarta, 140 + 10 = 150. A ordem importa: se a multiplicação viesse antes da subtração, o resultado seria outro."
+  },
+  {
+    "id": "VAR-011",
+    "topic": "variaveis",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "O programa abaixo deveria imprimir a média das notas, 7.0, mas imprime 10.0. Qual é o problema? Responda só com a letra da alternativa.",
+    "code": [
+      "n1 = 6",
+      "n2 = 8",
+      "media = n1 + n2 / 2",
+      "print(media)"
+    ],
+    "options": [
+      {"id": "A", "text": "A divisão é feita antes da soma, então apenas n2 é dividido por 2; faltam parênteses: (n1 + n2) / 2."},
+      {"id": "B", "text": "As variáveis n1 e n2 deveriam ser float."},
+      {"id": "C", "text": "O operador / não pode ser usado com números inteiros."},
+      {"id": "D", "text": "O print deveria usar str(media)."}
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Calcule a expressão passo a passo, lembrando quais operadores o Python resolve primeiro.",
+      "Veja quais valores estão sendo divididos por 2 e compare com o que seria necessário para calcular uma média."
+    ],
+    "explanation": "Pela precedência, / é resolvido antes de +: 8 / 2 = 4.0 e depois 6 + 4.0 = 10.0. Para dividir a soma, é preciso usar parênteses: (n1 + n2) / 2 = 14 / 2 = 7.0. Os tipos das variáveis, o uso de / com inteiros e str() não são a causa."
+  },
+  {
+    "id": "VAR-012",
+    "topic": "variaveis",
+    "level": 3,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "a = 2",
+      "b = 3",
+      "a = a + b",
+      "b = a * b",
+      "a = b - a",
+      "print(a)"
+    ],
+    "accepted_answers": ["10"],
+    "hints": [
+      "Faça uma tabela com as colunas a e b e atualize apenas uma variável por linha de código.",
+      "Cada atribuição usa os valores mais recentes de a e b, e não os valores iniciais. Releia a ordem das três linhas."
+    ],
+    "explanation": "Linha a = a + b: a = 5. Linha b = a * b: b = 5 * 3 = 15. Linha a = b - a: a = 15 - 5 = 10. O print mostra 10. O erro mais comum é usar os valores iniciais de a e b em vez dos atuais."
+  },
+  {
+    "id": "VAR-013",
+    "topic": "variaveis",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "O programa abaixo deveria imprimir o dobro do preço, 15.6, mas imprime 14. Qual é o problema? Responda só com a letra da alternativa.",
+    "code": [
+      "preco = 7.8",
+      "dobro = int(preco) * 2",
+      "print(dobro)"
+    ],
+    "options": [
+      {"id": "A", "text": "int(preco) descarta a parte decimal de 7.8 antes da multiplicação; bastava calcular preco * 2."},
+      {"id": "B", "text": "O operador * não funciona com números float."},
+      {"id": "C", "text": "preco deveria ser uma string."},
+      {"id": "D", "text": "O print arredonda automaticamente o resultado."}
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Compare o valor de preco com o valor que chega à multiplicação depois de passar pela função int().",
+      "Pense no que int() faz com um número que tem parte decimal. Depois, veja se esse passo é necessário para obter 15.6."
+    ],
+    "explanation": "int(7.8) converte para o inteiro 7, descartando a parte decimal. Depois, 7 * 2 = 14. Como o objetivo é 7.8 * 2 = 15.6, a conversão não deve ocorrer antes da multiplicação. O operador * funciona normalmente com float, e o print não arredonda nada."
+  },
+  {
+    "id": "VAR-014",
+    "topic": "variaveis",
+    "level": 3,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual valor será impresso? Responda só com True ou False.",
+    "code": [
+      "saldo = 100",
+      "pagou = saldo >= 150",
+      "saldo = 200",
+      "print(pagou)"
+    ],
+    "accepted_answers": ["False"],
+    "hints": [
+      "A expressão saldo >= 150 produz um valor bool. Esse valor é calculado no momento da atribuição ou sempre que pagou for usada?",
+      "Descubra qual era o valor de saldo na linha em que pagou foi criada. Mudar saldo depois altera o que pagou guarda?"
+    ],
+    "explanation": "Quando pagou = saldo >= 150 é executada, saldo vale 100, então a comparação resulta em False, e esse valor é guardado em pagou. A mudança posterior de saldo para 200 não refaz a comparação. O print mostra False."
+  },
+  {
+    "id": "VAR-015",
+    "topic": "variaveis",
+    "level": 3,
+    "type": "fill_blank",
+    "statement": "O programa deve fazer com que resultado guarde a soma dos três valores. Complete a lacuna para que o resultado impresso seja 18. Responda só com a expressão que substitui ___.",
+    "code": [
+      "a = 4",
+      "b = 6",
+      "c = 8",
+      "resultado = a + b",
+      "resultado = resultado + ___",
+      "print(resultado)"
+    ],
+    "accepted_answers": ["c"],
+    "hints": [
+      "Observe quais valores já foram utilizados na primeira atribuição de resultado. Qual deles ainda falta?",
+      "A segunda atribuição deve utilizar o valor que resultado já guarda e acrescentar a terceira variável."
+    ],
+    "explanation": "Na primeira atribuição, resultado recebe a + b, ou seja, 4 + 6 = 10. Na segunda, recebe o valor anterior de resultado somado a c: 10 + 8 = 18."
   }
 ]
