@@ -1,15 +1,332 @@
+
 [
   {
     "id": "LIST-001",
     "topic": "listas",
     "level": 1,
-    "type": "short_answer",
-    "statement": "Qual método de uma lista Python adiciona um elemento no final dela? Responda só com o nome do método.",
-    "accepted_answers": ["append", "append()", "método append"],
-    "hints": [
-      "O nome do método começa com a letra a.",
-      "A chamada tem a forma lista.nome(elemento)."
+    "type": "multiple_choice",
+    "statement": "Observe o código abaixo. Qual valor será impresso? Responda só com a letra da alternativa.",
+    "code": [
+      "frutas = ['maca', 'banana', 'uva']",
+      "print(frutas[1])"
     ],
-    "explanation": "O método append() adiciona um elemento ao final de uma lista. Exemplo: frutas.append('uva')."
+    "options": [
+      {"id": "A", "text": "maca"},
+      {"id": "B", "text": "banana"},
+      {"id": "C", "text": "uva"},
+      {"id": "D", "text": "Ocorre um erro"}
+    ],
+    "correct_option": "B",
+    "hints": [
+      "Os índices de uma lista começam em um número específico. Qual?",
+      "Escreva ao lado de cada fruta o seu índice e procure o elemento que está no índice 1."
+    ],
+    "explanation": "Os índices começam em 0: frutas[0] é 'maca', frutas[1] é 'banana' e frutas[2] é 'uva'. Quem conta a partir de 1 escolheria 'maca'."
+  },
+  {
+    "id": "LIST-002",
+    "topic": "listas",
+    "level": 1,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "fila = ['ana', 'bia']",
+      "fila.append('caio')",
+      "fila.append('duda')",
+      "print(len(fila))"
+    ],
+    "accepted_answers": ["4"],
+    "hints": [
+      "Pense no que append() faz com a lista e em como isso afeta o valor de len().",
+      "len() é calculado no momento do print. Quantos elementos a lista tem depois das duas chamadas a append()?"
+    ],
+    "explanation": "A lista começa com 2 elementos. Cada append() acrescenta um elemento ao final: 'caio' e depois 'duda'. No print, len(fila) vale 4."
+  },
+  {
+    "id": "LIST-003",
+    "topic": "listas",
+    "level": 1,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para que o programa imprima o último elemento da lista. O mesmo código deve funcionar para listas de qualquer tamanho. Responda só com o número que substitui ___.",
+    "code": [
+      "numeros = [10, 20, 30, 40]",
+      "print(numeros[len(numeros) - ___])"
+    ],
+    "accepted_answers": ["1"],
+    "hints": [
+      "Se uma lista tem 4 elementos, quais são os seus índices? Qual é o maior?",
+      "O último índice é sempre menor que o tamanho da lista. Descubra quanto falta para chegar a ele."
+    ],
+    "explanation": "Os índices vão de 0 até len(lista) - 1. Aqui, len(numeros) vale 4, então o último índice é 3, que corresponde ao 40. Usar len(numeros) sozinho causaria erro, pois não existe o índice 4."
+  },
+  {
+    "id": "LIST-004",
+    "topic": "listas",
+    "level": 1,
+    "type": "short_answer",
+    "statement": "Qual valor será impresso? Responda só com o número.",
+    "code": [
+      "temperaturas = [20, 22, 30]",
+      "temperaturas[2] = temperaturas[0] + 5",
+      "print(temperaturas[2])"
+    ],
+    "accepted_answers": ["25"],
+    "hints": [
+      "Em uma atribuição, o lado direito é calculado primeiro. Descubra qual valor sai do lado direito.",
+      "O resultado é guardado na posição indicada à esquerda, substituindo o que havia lá. Depois, o print lê essa mesma posição."
+    ],
+    "explanation": "temperaturas[0] vale 20, então o lado direito resulta em 25. Esse valor é guardado no índice 2, substituindo o 30 antigo. O print de temperaturas[2] mostra 25."
+  },
+  {
+    "id": "LIST-005",
+    "topic": "listas",
+    "level": 1,
+    "type": "multiple_choice",
+    "statement": "Observe o código abaixo. Em cada volta do laço, o que a variável nome guarda? Responda só com a letra da alternativa.",
+    "code": [
+      "nomes = ['ana', 'bia', 'caio']",
+      "for nome in nomes:",
+      "    print(nome)"
+    ],
+    "options": [
+      {"id": "A", "text": "O índice do elemento (0, 1, 2)."},
+      {"id": "B", "text": "O elemento da lista correspondente à volta atual."},
+      {"id": "C", "text": "A lista inteira."},
+      {"id": "D", "text": "O tamanho da lista."}
+    ],
+    "correct_option": "B",
+    "hints": [
+      "Repare no que o print mostra: são números ou nomes?",
+      "Em for nome in nomes, o Python entrega um elemento de cada vez para a variável do laço. Veja o que seria impresso em cada volta."
+    ],
+    "explanation": "Nesse tipo de for, a variável do laço recebe os próprios elementos da lista, um por volta: 'ana', 'bia', 'caio'. Por isso o programa imprime os nomes. Para trabalhar com índices, usa-se for i in range(len(nomes))."
+  },
+  {
+    "id": "LIST-006",
+    "topic": "listas",
+    "level": 2,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "notas = [5, 8, 6, 4, 6, 9]",
+      "cont = 0",
+      "for nota in notas:",
+      "    if nota >= 6:",
+      "        cont = cont + 1",
+      "print(cont)"
+    ],
+    "accepted_answers": ["4"],
+    "hints": [
+      "O contador só aumenta nas voltas em que o if é verdadeiro. Descubra para quais notas isso acontece.",
+      "Atenção ao operador >=: uma nota igual a 6 também faz o contador aumentar. Percorra a lista elemento por elemento."
+    ],
+    "explanation": "As notas que satisfazem nota >= 6 são 8, 6, 6 e 9. Cada uma soma 1 em cont, que termina valendo 4. O 6 conta porque >= inclui o valor igual."
+  },
+  {
+    "id": "LIST-007",
+    "topic": "listas",
+    "level": 2,
+    "type": "multiple_choice",
+    "statement": "Dada a lista abaixo, qual das opções exibe todos os elementos, um por linha, sem causar erro? Responda só com a letra da alternativa.",
+    "code": [
+      "cores = ['azul', 'verde', 'rosa']"
+    ],
+    "options": [
+      {"id": "A", "text": "for i in range(len(cores)): print(cores[i])"},
+      {"id": "B", "text": "for i in range(len(cores)): print(i)"},
+      {"id": "C", "text": "for i in range(len(cores) + 1): print(cores[i])"},
+      {"id": "D", "text": "for i in range(1, len(cores)): print(cores[i])"}
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Verifique em cada opção dois pontos: quais valores i assume e o que o print mostra a cada volta.",
+      "Para percorrer todos os elementos, i precisa assumir todos os índices válidos, do primeiro ao último, e o print deve usar i para acessar o elemento."
+    ],
+    "explanation": "range(len(cores)) gera 0, 1 e 2, exatamente os índices válidos, e cores[i] acessa cada elemento. A B imprime os índices, não os elementos. A C gera também o índice 3, que não existe. A D começa em 1 e deixa de fora o primeiro elemento."
+  },
+  {
+    "id": "LIST-008",
+    "topic": "listas",
+    "level": 2,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "notas = [6, 7, 8]",
+      "for i in range(len(notas)):",
+      "    notas[i] = notas[i] + 1",
+      "print(notas[0] + notas[2])"
+    ],
+    "accepted_answers": ["16"],
+    "hints": [
+      "O laço altera os elementos da lista. Descubra como a lista fica depois de todas as voltas.",
+      "O print só é executado depois do laço terminar, então ele lê a lista já modificada. Some os elementos pedidos usando seus novos valores."
+    ],
+    "explanation": "Cada volta soma 1 ao elemento da posição i, então a lista fica [7, 8, 9]. O print calcula notas[0] + notas[2] = 7 + 9 = 16. Quem usa os valores originais obtém 6 + 8 = 14."
+  },
+  {
+    "id": "LIST-009",
+    "topic": "listas",
+    "level": 2,
+    "type": "fill_blank",
+    "statement": "Complete a lacuna para que a lista dobros guarde o dobro de cada número de numeros. Ao final, o programa deve imprimir 6. Responda só com a expressão que substitui ___.",
+    "code": [
+      "numeros = [1, 2, 3]",
+      "dobros = []",
+      "for n in numeros:",
+      "    dobros.append(___)",
+      "print(dobros[2])"
+    ],
+    "accepted_answers": [
+      "n * 2",
+      "n*2",
+      "2 * n",
+      "2*n",
+      "n + n",
+      "n+n"
+    ],
+    "hints": [
+      "Dentro do laço, n guarda um elemento de numeros por volta. O que precisa ser acrescentado a dobros em cada volta?",
+      "Use n para escrever a expressão que calcula o dobro daquele elemento, e não o índice nem a lista."
+    ],
+    "explanation": "Em cada volta, n guarda um elemento (1, 2, 3) e append(n * 2) acrescenta seu dobro: dobros fica [2, 4, 6]. Então dobros[2] vale 6."
+  },
+  {
+    "id": "LIST-010",
+    "topic": "listas",
+    "level": 2,
+    "type": "short_answer",
+    "statement": "Qual valor será impresso? Responda só com o número.",
+    "code": [
+      "seq = [1, 1]",
+      "seq.append(seq[0] + seq[1])",
+      "seq.append(seq[1] + seq[2])",
+      "print(seq[3])"
+    ],
+    "accepted_answers": ["3"],
+    "hints": [
+      "Depois do primeiro append(), a lista passa a ter um elemento a mais. Escreva a lista como ela fica a cada passo.",
+      "Na segunda chamada, os índices 1 e 2 se referem à lista já atualizada. Depois descubra qual elemento está no índice 3."
+    ],
+    "explanation": "Primeiro append: seq[0] + seq[1] = 2, e a lista fica [1, 1, 2]. Segundo append: seq[1] + seq[2] = 1 + 2 = 3, e a lista fica [1, 1, 2, 3]. O elemento do índice 3 é 3."
+  },
+  {
+    "id": "LIST-011",
+    "topic": "listas",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "O programa abaixo deveria imprimir a média das notas, 8.0, mas imprime 1.0. Qual é o problema? Responda só com a letra da alternativa.",
+    "code": [
+      "notas = [8, 6, 10]",
+      "soma = 0",
+      "for i in range(len(notas)):",
+      "    soma = soma + i",
+      "print(soma / len(notas))"
+    ],
+    "options": [
+      {"id": "A", "text": "soma + i acrescenta o índice i, e não o elemento; o correto seria soma + notas[i]."},
+      {"id": "B", "text": "len(notas) deveria ser 2."},
+      {"id": "C", "text": "range(len(notas)) deveria ser range(1, len(notas))."},
+      {"id": "D", "text": "soma deveria começar em 1."}
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Descubra o valor final de soma e compare com a soma esperada das notas.",
+      "Em um laço com range(len(notas)), a variável i guarda um índice. Veja o que está sendo acumulado em soma."
+    ],
+    "explanation": "Em range(len(notas)), i vale 0, 1 e 2: são índices, não notas. Assim, soma vale 0 + 1 + 2 = 3, e 3 / 3 = 1.0. Para somar as notas, é preciso acessar o elemento: soma = soma + notas[i], que dá 24 / 3 = 8.0."
+  },
+  {
+    "id": "LIST-012",
+    "topic": "listas",
+    "level": 3,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "precos = [30, 55, 20, 55, 40]",
+      "posicao = 0",
+      "for i in range(len(precos)):",
+      "    if precos[i] > precos[posicao]:",
+      "        posicao = i",
+      "print(posicao)"
+    ],
+    "accepted_answers": ["1"],
+    "hints": [
+      "posicao guarda um índice, e não um valor. Acompanhe como ela muda a cada volta.",
+      "Em cada volta, compare precos[i] com o elemento que está na posição guardada em posicao. Veja o que acontece quando os dois valores são iguais, dado o operador usado."
+    ],
+    "explanation": "i = 0: 30 > 30 é falso. i = 1: 55 > 30, então posicao = 1. i = 2: 20 > 55 é falso. i = 3: 55 > 55 é falso (o operador é > e não >=), e posicao não muda. i = 4: 40 > 55 é falso. O programa imprime 1, o índice da primeira ocorrência do maior valor."
+  },
+  {
+    "id": "LIST-013",
+    "topic": "listas",
+    "level": 3,
+    "type": "multiple_choice",
+    "statement": "O programa deveria contar quantos números da lista são maiores que 5, mas apresenta um resultado incorreto. Qual é o problema? Responda só com a letra da alternativa.",
+    "code": [
+      "valores = [3, 7, 5, 9, 2]",
+      "cont = 0",
+      "for i in range(len(valores)):",
+      "    if valores[i] > 5:",
+      "        cont = cont + valores[0]",
+      "print(cont)"
+    ],
+    "options": [
+      {"id": "A", "text": "O contador deveria aumentar de 1 em 1, mas está acrescentando valores[0]."},
+      {"id": "B", "text": "O laço deveria começar em 1."},
+      {"id": "C", "text": "A condição deveria usar >= em vez de >."},
+      {"id": "D", "text": "A lista não pode conter números menores que 5."}
+    ],
+    "correct_option": "A",
+    "hints": [
+      "Observe quais elementos satisfazem a condição e quantas vezes o contador deveria aumentar.",
+      "O objetivo é contar elementos, não somar valores. Compare o valor acrescentado ao contador com o que seria necessário para contar uma ocorrência."
+    ],
+    "explanation": "Os números maiores que 5 são 7 e 9, portanto existem 2 elementos que satisfazem a condição. Porém, o programa acrescenta valores[0], que vale 3, ao contador em cada ocorrência. Assim, cont termina em 6. Para contar corretamente, deveria utilizar cont = cont + 1."
+  },
+  {
+    "id": "LIST-014",
+    "topic": "listas",
+    "level": 3,
+    "type": "predict_output",
+    "statement": "Considere o código abaixo. Qual número será impresso na tela? Responda só com o número.",
+    "code": [
+      "notas = [4, 8, 6, 10]",
+      "soma = 0",
+      "for n in notas:",
+      "    soma = soma + n",
+      "media = soma / len(notas)",
+      "cont = 0",
+      "for n in notas:",
+      "    if n > media:",
+      "        cont = cont + 1",
+      "print(cont)"
+    ],
+    "accepted_answers": ["2"],
+    "hints": [
+      "O programa percorre a lista duas vezes. Descubra o que cada percurso calcula antes de olhar o resultado final.",
+      "O primeiro percurso produz a média. Calcule-a e compare cada nota com ela no segundo percurso, observando se o teste é > ou >=."
+    ],
+    "explanation": "O primeiro laço soma as notas: 4 + 8 + 6 + 10 = 28, e a média é 28 / 4 = 7.0. O segundo laço conta as notas estritamente maiores que 7.0: 8 e 10. O resultado é 2."
+  },
+  {
+    "id": "LIST-015",
+    "topic": "listas",
+    "level": 3,
+    "type": "fill_blank",
+    "statement": "O programa deve imprimir o maior valor da lista (neste caso, -3) e funcionar para qualquer lista não vazia, mesmo uma só com números negativos. Complete a lacuna com a inicialização adequada de maior. Responda só com o que substitui ___.",
+    "code": [
+      "valores = [-8, -3, -15]",
+      "maior = ___",
+      "for v in valores:",
+      "    if v > maior:",
+      "        maior = v",
+      "print(maior)"
+    ],
+    "accepted_answers": ["valores[0]"],
+    "hints": [
+      "Pense no que aconteceria se todos os elementos fossem menores que o valor inicial de maior. O if chegaria a ser verdadeiro alguma vez?",
+      "O valor inicial de maior deve ser um valor que certamente pertence à lista. Qual elemento pode servir de ponto de partida, independentemente do conteúdo da lista?"
+    ],
+    "explanation": "Se maior começasse em 0, nenhum número negativo seria maior que ele, e o programa imprimiria 0, que nem está na lista. Começando com valores[0] = -8: -3 > -8, então maior = -3; -15 > -3 é falso. O resultado é -3. Inicializar com o primeiro elemento funciona para qualquer lista não vazia."
   }
 ]
