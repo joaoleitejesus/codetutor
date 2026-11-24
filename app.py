@@ -5,15 +5,57 @@ from pathlib import Path
 
 import streamlit as st
 
-from codetutor.exercicios import carregar_exercicios
-from codetutor.historico import CAMINHO_PADRAO, exportar_csv, registrar_tentativa
-from codetutor.tutor import MAX_TENTATIVAS, avaliar_tentativa, validar_formato
+from codetutor import nuvem
+from codetutor.exercicios import carregar_exercicios, ordenar_exercicios
+from codetutor.historico import (
+    CAMINHO_PADRAO,
+    listar_historico,
+    para_csv,
+    registrar_tentativa,
+)
+from codetutor.tutor import (
+    MAX_TENTATIVAS,
+    avaliar_tentativa,
+    proximo_indice,
+    validar_formato,
+)
 
 RAIZ = Path(__file__).parent
 PASTA_EXERCICIOS = RAIZ / "data" / "exercicios"
 PASTA_ASSETS = RAIZ / "assets"
 # CODETUTOR_DB permite trocar o banco (usado nos testes). Sem ela, usa data/historico.db
 CAMINHO_BANCO = os.environ.get("CODETUTOR_DB", CAMINHO_PADRAO)
+
+
+def segredo(nome):
+    """Lê um valor de st.secrets. Devolve None se não existir (ex.: rodando local)."""
+    try:
+        return st.secrets.get(nome)
+    except Exception:
+        return None
+
+
+URL_NUVEM = segredo("SUPABASE_URL")
+CHAVE_NUVEM = segredo("SUPABASE_KEY")
+USA_NUVEM = bool(URL_NUVEM and CHAVE_NUVEM)
+
+
+def historico_completo():
+    """Todo o histórico: da nuvem se configurada e acessível, senão o local."""
+    if USA_NUVEM:
+        linhas = nuvem.listar_tentativas(URL_NUVEM, CHAVE_NUVEM)
+        if linhas is not None:
+            return linhas
+    return listar_historico(CAMINHO_BANCO)
+
+
+def historico_do_participante(codigo):
+    """Histórico de um participante (nuvem se possível, senão local)."""
+    if USA_NUVEM:
+        linhas = nuvem.listar_tentativas(URL_NUVEM, CHAVE_NUVEM, codigo)
+        if linhas is not None:
+            return linhas
+    return listar_historico(CAMINHO_BANCO, codigo)
 
 
 def mascote_html(largura):
@@ -51,7 +93,7 @@ st.markdown(
 
 # 1) Carregar o banco de exercícios
 try:
-    exercicios = carregar_exercicios(PASTA_EXERCICIOS)
+    exercicios = ordenar_exercicios(carregar_exercicios(PASTA_EXERCICIOS))
 except ValueError as erro:
     st.error("O banco de exercícios tem problemas. Avise quem editou os arquivos.")
     st.code(str(erro))
@@ -90,10 +132,7 @@ with st.sidebar:
 
     # Área do pesquisador: só aparece se existir a senha configurada (st.secrets).
     # Sem isso, qualquer visitante do site público poderia baixar o histórico de todos.
-    try:
-        senha_correta = st.secrets.get("SENHA_PESQUISADOR")
-    except Exception:  # sem arquivo de segredos (ex.: rodando local sem configurar)
-        senha_correta = None
+    senha_correta = segredo("SENHA_PESQUISADOR")
 
     if senha_correta:
         with st.expander("Área do pesquisador"):
@@ -101,19 +140,28 @@ with st.sidebar:
             if senha == senha_correta:
                 st.download_button(
                     "Baixar histórico (CSV)",
-                    data=exportar_csv(CAMINHO_BANCO),
+                    data=para_csv(historico_completo()),
                     file_name="historico_codetutor.csv",
                     mime="text/csv",
                 )
 
 # 3) Memória da sessão: sobrevive aos cliques, ao contrário das variáveis comuns
-if "indice" not in st.session_state:
-    st.session_state.indice = 0
+# Quando a pessoa abre o app (ou troca o código), retomamos do primeiro exercício
+# que ela ainda não concluiu, olhando o histórico.
+if st.session_state.get("dono") != participante:
+    anterior = proximo_indice(exercicios, historico_do_participante(participante))
+    st.session_state.dono = participante
+    st.session_state.indice = len(exercicios) if anterior is None else anterior
     st.session_state.tentativas = 0
     st.session_state.resultado = None
     st.session_state.dicas = []
+    st.session_state.aviso_nuvem = False
 
-posicao = st.session_state.indice % len(exercicios)
+if st.session_state.indice >= len(exercicios):
+    st.success("Você concluiu todos os exercícios do banco. Parabéns!")
+    st.stop()
+
+posicao = st.session_state.indice
 exercicio = exercicios[posicao]
 resultado = st.session_state.resultado
 finalizado = resultado is not None and resultado["finalizado"]
@@ -163,18 +211,23 @@ with st.container(border=True):
             )
             st.session_state.resultado = resultado
 
-            registrar_tentativa(
+            registro = registrar_tentativa(
                 CAMINHO_BANCO,
                 participante,
                 exercicio,
                 st.session_state.tentativas,
                 resultado,
             )
+            if USA_NUVEM and not nuvem.enviar_tentativa(URL_NUVEM, CHAVE_NUVEM, registro):
+                st.session_state.aviso_nuvem = True
 
             if resultado["dica"]:
                 st.session_state.dicas.append(resultado["dica"])
 
             st.rerun()
+
+    if st.session_state.get("aviso_nuvem"):
+        st.caption("Aviso: não consegui salvar esta tentativa na nuvem. Avise o pesquisador.")
 
     # Resultado
     if resultado is not None:

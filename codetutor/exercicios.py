@@ -160,3 +160,17 @@ def carregar_exercicios(pasta):
     if problemas:
         raise ValueError("Exercícios fora do contrato:\n" + "\n".join(problemas))
     return exercicios
+
+
+ORDEM_ASSUNTOS = ["variaveis", "condicionais", "repeticao", "listas", "dicionarios", "arquivos"]
+
+
+def ordenar_exercicios(exercicios):
+    """Ordena por assunto (ordem didática), depois nível, depois id.
+
+    Assim todo participante vê a mesma sequência, do mais básico ao mais difícil.
+    """
+    return sorted(
+        exercicios,
+        key=lambda ex: (ORDEM_ASSUNTOS.index(ex["topic"]), ex["level"], ex["id"]),
+    )

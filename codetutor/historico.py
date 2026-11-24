@@ -50,18 +50,27 @@ def _conectar(caminho):
     return conexao
 
 
+def montar_linha(participante, exercicio, tentativa, resultado):
+    """Monta o registro de uma tentativa como dicionário (usado no SQLite e na nuvem)."""
+    return {
+        "participante": participante,
+        "exercicio_id": exercicio["id"],
+        "assunto": exercicio["topic"],
+        "nivel": exercicio["level"],
+        "tentativa": tentativa,
+        "correta": int(resultado["correta"]),
+        "finalizado": int(resultado["finalizado"]),
+        "data_hora": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    }
+
+
 def registrar_tentativa(caminho, participante, exercicio, tentativa, resultado):
-    """Guarda uma tentativa. 'resultado' é o dicionário de avaliar_tentativa."""
-    linha = (
-        participante,
-        exercicio["id"],
-        exercicio["topic"],
-        exercicio["level"],
-        tentativa,
-        int(resultado["correta"]),
-        int(resultado["finalizado"]),
-        datetime.now(timezone.utc).isoformat(timespec="seconds"),
-    )
+    """Guarda uma tentativa. 'resultado' é o dicionário de avaliar_tentativa.
+
+    Devolve o registro gravado, para quem quiser enviá-lo também para a nuvem.
+    """
+    registro = montar_linha(participante, exercicio, tentativa, resultado)
+    linha = tuple(registro[coluna] for coluna in COLUNAS)
 
     with closing(_conectar(caminho)) as conexao:
         with conexao:  # confirma (commit) a gravação
@@ -70,6 +79,8 @@ def registrar_tentativa(caminho, participante, exercicio, tentativa, resultado):
                 "tentativa, correta, finalizado, data_hora) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 linha,
             )
+
+    return registro
 
 
 def listar_historico(caminho, participante=None):
@@ -89,10 +100,15 @@ def listar_historico(caminho, participante=None):
     return [dict(zip(COLUNAS, linha)) for linha in linhas]
 
 
-def exportar_csv(caminho):
-    """Devolve todo o histórico como texto CSV (para backup e para a análise)."""
+def para_csv(linhas):
+    """Converte uma lista de tentativas (dicionários) em texto CSV."""
     saida = io.StringIO()
-    escritor = csv.DictWriter(saida, fieldnames=COLUNAS)
+    escritor = csv.DictWriter(saida, fieldnames=COLUNAS, extrasaction="ignore")
     escritor.writeheader()
-    escritor.writerows(listar_historico(caminho))
+    escritor.writerows(linhas)
     return saida.getvalue()
+
+
+def exportar_csv(caminho):
+    """Devolve todo o histórico local como texto CSV (para backup e para a análise)."""
+    return para_csv(listar_historico(caminho))

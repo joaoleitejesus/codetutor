@@ -81,3 +81,15 @@ def avaliar_tentativa(exercicio, resposta, tentativas):
         "explicacao": None,
         "finalizado": False,
     }
+
+
+def proximo_indice(exercicios, historico):
+    """Posição do primeiro exercício que o participante ainda não concluiu.
+
+    'historico' é a lista de tentativas dele. Devolve None se concluiu todos.
+    """
+    concluidos = {linha["exercicio_id"] for linha in historico if linha["finalizado"]}
+    for posicao, exercicio in enumerate(exercicios):
+        if exercicio["id"] not in concluidos:
+            return posicao
+    return None
